@@ -19,7 +19,7 @@ def DSigmoid(x):
 	return Sigmoid(x)*(1-Sigmoid(x))
 
 def F(i):
-	return y[i]-Sigmoid(w1*x1[i]-w2*x2[i])
+	return y[i]-Sigmoid(Func(i))
 
 w1=0.3
 w2=0.6
