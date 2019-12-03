@@ -1,0 +1,33 @@
+x=[0,1,2,3]
+y=[0,1,4,9]
+
+
+def Func(i):
+	return a1*x[i]*x[i]+a2*x[i]+a3
+
+def DFunc(i):
+	return 2*a1*x[i]+a2
+
+
+def F(i):
+	return y[i]-Func(i)
+
+a1=0.3
+a2=0.6
+a3=0.3
+
+itter=0
+
+while itter <10:
+	for i in range(4):
+		a1=a1+x[i]*(F(i)*DFunc(i))
+		a2=a2+x[i]*(F(i)*DFunc(i))
+		a3=a3+x[i]*(F(i)*DFunc(i))
+	print(a1)
+	print(a2)
+	print(a3)
+	itter+=1
+
+print(a1)
+print(a2)
+print(a3)
