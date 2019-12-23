@@ -1,0 +1,74 @@
+  #layered/ sandwich
+
+import math
+
+x1=[0,0,1,1]
+x2=[0,1,0,1]
+
+y=[1,0,0,1]
+
+def FuncAnd(i):
+	return w1*x1[i]+w2*x2[i]+w5
+
+def FuncOr(i):
+	return w3*x1[i]+w4*x2[i]+w9
+
+def FuncXor(i):
+	return w6*Sigmoid(FuncAnd(i))+w7*Sigmoid(FuncOr(i))+w8
+
+def Sigmoid(x):
+	return 1/(1+math.exp(-x))
+
+def DSigmoid(x):
+	return Sigmoid(x)*(1-Sigmoid(x))
+
+w1=-8
+w2=-8
+w3=8
+w4=8
+w5=12
+w6=-8
+w7=-8
+w8=12
+w9=-4
+
+
+
+itter=0
+
+while itter <100000:
+    for i in range(4):
+        w1=w1+x1[i]*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncAnd(i))
+        w2=w2+x2[i]*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncAnd(i))
+        w5=w5+(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncAnd(i))
+        w3=w3+x1[i]*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncOr(i))
+        w4=w4+x2[i]*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncOr(i))
+        w6=w6+FuncAnd(i)*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncXor(i))
+        w7=w7+FuncOr(i)*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncXor(i))
+        w8=w8+((y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncXor(i)))
+    itter+=1
+    
+    
+print("w1",w1)
+print("w2",w2)
+print("w3",w3)
+print("w4",w4)
+print("w5",w5)
+print("w6",w6)
+print("w7",w7)
+print("w8",w8)
+print("--------Not And---")
+print(Sigmoid(FuncAnd(0)))
+print(Sigmoid(FuncAnd(1)))
+print(Sigmoid(FuncAnd(2)))
+print(Sigmoid(FuncAnd(3)))
+print("--------Or---")
+print(Sigmoid(FuncOr(0)))
+print(Sigmoid(FuncOr(1)))
+print(Sigmoid(FuncOr(2)))
+print(Sigmoid(FuncOr(3)))
+print("--------Xor---")
+print(Sigmoid(FuncXor(0)))
+print(Sigmoid(FuncXor(1)))
+print(Sigmoid(FuncXor(2)))
+print(Sigmoid(FuncXor(3)))
