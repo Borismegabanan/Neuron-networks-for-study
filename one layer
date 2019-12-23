@@ -18,8 +18,8 @@ def Sigmoid(x):
 def DSigmoid(x):
 	return Sigmoid(x)*(1-Sigmoid(x))
 
-def F(i):
-	return y[i]-Sigmoid(Func(i))
+def F(i): #error
+	return y[i]-Sigmoid(Func(i))**2
 
 w1=0.3
 w2=0.6
@@ -29,11 +29,12 @@ itter=0
 
 while itter <10000:
 	for i in range(4):
-		w1=w1+x1[i]*(y[i]-Sigmoid(Func(i)))*DSigmoid(Func(i))
-		w2=w2+x2[i]*(y[i]-Sigmoid(Func(i)))*DSigmoid(Func(i))
-		w3=w3+x3[i]*(y[i]-Sigmoid(Func(i)))*DSigmoid(Func(i))
+		w1=w1+(F(i))*x1[i]*DSigmoid(Func(i))
+		w2=w2+(F(i))*x2[i]*DSigmoid(Func(i))
+		w3=w3+(F(i))*x3[i]*DSigmoid(Func(i))
 	itter+=1
 print(w1)
 print(w2)
 print(w3)
+print("------------")
 print(Sigmoid(1*w1+0*w2+w3*0))
