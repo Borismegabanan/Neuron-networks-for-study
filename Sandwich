@@ -46,6 +46,7 @@ while itter <100000:
         w6=w6+FuncAnd(i)*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncXor(i))
         w7=w7+FuncOr(i)*(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncXor(i))
         w8=w8+((y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncXor(i)))
+	w9=w9+(y[i]-Sigmoid(FuncXor(i)))*DSigmoid(FuncOr(i))
     itter+=1
     
     
@@ -57,6 +58,7 @@ print("w5",w5)
 print("w6",w6)
 print("w7",w7)
 print("w8",w8)
+print("w9",w9)
 print("--------Not And---")
 print(Sigmoid(FuncAnd(0)))
 print(Sigmoid(FuncAnd(1)))
